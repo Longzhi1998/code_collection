@@ -140,7 +140,10 @@ int findPIDByNameFromList(struct PID_DirList *pid_DirList, char *processName) {
     if (ret < 0) {
       printf("--fd=%d--\n", FileFD);
       perror("read data fail");
+      close(FileED);
+      continue;
     }
+    close(FileFD);
     char *bufferPtr = (char *)readFile_Buffer;  //指针操作
     char *subStr = NULL;
     int sepStep = 0;  //代表是第几个单词
